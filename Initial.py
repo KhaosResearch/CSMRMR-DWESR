@@ -1,76 +1,16 @@
-## dataset mango-no-lag
-df = pd.read_csv('/home/hossein//mango_grouped.csv', sep=";")
-data3=df
-data3.loc[83,"KilosEntrados"]=0
-data3.loc[107,"KilosEntrados"]=0
-data3.loc[134,"KilosEntrados"]=0
 
-## dataset mango-l24
-# df = pd.read_csv('/home/hossein/Downloads/avocado_datasets/avocado_l4.csv', sep=";")
-
-df = pd.read_csv('/home/hossein//differenced_mango_l24.csv', sep=";")
-# df = df.drop(df.index[0])
-data3=df
-data3.index = pd.to_datetime(data3['FechaRecepcion'])
-data3.drop(columns='FechaRecepcion',inplace=True)
-
-
-
-
-
-
-# df = pd.read_csv('/home/hossein//mango_l24.csv', sep=";")
 df = pd.read_csv('/home/hossein/Downloads/avocado_datasets/avocado_l4.csv', sep=";")
 
 df['KilosEntrados'] = df['KilosEntrados'].clip(lower=0)
-# selected_features = ['KilosEntrados', 'FechaRecepcion']+ E
-selected_features = ['KilosEntrados', 'FechaRecepcion']+ E.tolist()
-# selected_features = ['KilosEntrados', 'FechaRecepcion']+ E
+# selected_features = ['KilosEntrados', 'FechaRecepcion']+ E.tolist()
+# # selected_features = ['KilosEntrados', 'FechaRecepcion']+ E
+# data3=df[selected_features]
 
-data3=df[selected_features]
-# data3 = df[['KilosEntrados','FechaRecepcion',  'tmedia']]
-# data3.drop(data3.tail(24).index,inplace=True) # drop last n rows
-
-# data3=df
+data3=df
 
 
 data3.index = pd.to_datetime(data3['FechaRecepcion'])
 data3.drop(columns='FechaRecepcion',inplace=True)
-
-
-
-
-## dataset mango-l12
-df = pd.read_csv('/home/hossein/Downloads/avocado_datasets/avocado_l12.csv', sep=";")
-
-# df = pd.read_csv('/home/hossein/mango_l4.csv', sep=";")
-data3 = df[['KilosEntrados','FechaRecepcion','dir (t-1)']]
-data3['KilosEntrados'] = data3['KilosEntrados'].clip(lower=0)
-# data3.drop(data3.tail(12).index,inplace=True) # drop last n rows
-# data3=df
-data3.index = pd.to_datetime(data3['FechaRecepcion'])
-data3.drop(columns='FechaRecepcion',inplace=True)
-
-#### avocado-l12
-
-df = pd.read_csv('/home/hossein/no_lag_avocado.csv', sep=";")
-df['KilosEntrados'] = df['KilosEntrados'].clip(lower=0)
-data3 = df[['KilosEntrados','FechaRecepcion','Superficie Cultivo (t-8)', 'tmin (t-7)']]
-# data3=df
-data3.index = pd.to_datetime(data3['FechaRecepcion'])
-data3.drop(columns='FechaRecepcion',inplace=True)
-
-# data3.drop(columns='dir',inplace=True)
-# data3.drop(columns='prec',inplace=True)
-# data3.drop(columns='velmedia',inplace=True)
-# data3.drop(columns='tmin',inplace=True)
-# data3.drop(columns='hmedia',inplace=True)
-# data3.drop(columns='NArboles',inplace=True)
-# data3.drop(columns='tmedia',inplace=True)
-# # data3.drop(columns='tmax',inplace=True)
-# data3.drop(columns='Superficie Cultivo',inplace=True)
-
-# data3['KilosEntrados'].plot()
 
 
 df_train = data3[:-12]
